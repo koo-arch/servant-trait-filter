@@ -1,0 +1,15 @@
+{
+    "name": "servant-trait-filter-frontend",
+    "dockerComposeFile": "../../docker-compose.yml",
+    "service": "frontend",
+    "workspaceFolder": "/frontend",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bradlc.vscode-tailwindcss",
+                "MylesMurphy.prettify-ts",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    }
+}
