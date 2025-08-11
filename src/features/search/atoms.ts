@@ -1,6 +1,7 @@
+import axios from '@/lib/axios/public';
 import { atom } from 'jotai';
-import { Expr } from '@/types/search';
-import { SearchRequest } from '@/types/search';
+import { atomWithQuery } from 'jotai-tanstack-query';
+import { Expr, SearchResponse, SearchRequest } from '@/features/search/types';
 
 const defaultPagination = {
     limit: 10,
@@ -31,5 +32,19 @@ export const commitSearchAtom = atom(
     (get, set) => {
         set(queryBuilderAtom, get(queryDraftAtom));
         set(paginationAtom, defaultPagination);
+    }
+);
+
+export const searchAtom = atomWithQuery(
+    (get) => {
+        const body = get(searchQueryAtom);
+        return {
+            queryKey: ['search', JSON.stringify(body)],
+            queryFn: async () => {
+                const { data } = await axios.post<SearchResponse>('/servants/search', body);
+                return data;
+            },
+            staleTime: 30_000, // 30 seconds
+        }
     }
 );
