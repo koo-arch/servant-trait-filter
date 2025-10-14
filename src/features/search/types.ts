@@ -11,7 +11,7 @@ export type Expr = {
 }
 
 export type SearchRequest = {
-    root: Expr;
+    root: Expr | null;
     limit?: number;
     offset?: number;
 }

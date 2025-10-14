@@ -5,7 +5,7 @@ import { queryBuilderAtom, paginationAtom } from '@/features/search/atoms/commit
 import { rqbToExpr } from '@/lib/mapping/rqb-to-expr';
 
 // ドラフト → Expr（派生）
-export const exprFromDraftAtom = atom<Expr | undefined>(
+export const exprFromDraftAtom = atom<Expr | null>(
     (get) => {
         const rules = get(draftRulesAtom);
         return rqbToExpr(rules);
