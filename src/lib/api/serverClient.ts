@@ -32,9 +32,25 @@ export async function serverFetch<T = unknown>(
         throw new Error(`HTTP error! status: ${res.status}, body: ${text}, requestId: ${requestId}`);
     }
 
+    // 204 / 非JSON / 空ボディのガード
+    if (res.status === 204) {
+        throw new Error(`No Content (204). requestId=${requestId}`);
+    }
+
+    const ct = res.headers.get('content-type') || '';
+    if (!ct.includes('application/json')) {
+        const text = await res.text();
+        throw new Error(`Unexpected Content-Type: ${ct}. body=${text}, requestId=${requestId}`);
+    }
+
+    const raw = await res.text();
+    if (!raw.trim()) {
+        throw new Error(`Empty JSON body. requestId=${requestId}`);
+    }
+
     try {
-        return await res.json() as T;
-    } catch {
-        return undefined as T;
+        return JSON.parse(raw) as T;
+    } catch (e) {
+        throw new Error(`Invalid JSON: ${(e as Error).message}. requestId=${requestId}`);
     }
 }
