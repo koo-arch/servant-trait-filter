@@ -2,7 +2,7 @@ import { atom } from 'jotai';
 import type { Expr, SearchRequest } from '@/features/search/types';
 import { draftRulesAtom, draftPaginationAtom } from '@/features/search/atoms/draft';
 import { queryBuilderAtom, paginationAtom } from '@/features/search/atoms/commited';
-import { rqbToExpr } from '@/lib/mapping/rqb-to-expr';
+import { rqbToExpr } from '@/features/search/lib/rqb-to-expr';
 
 // ドラフト → Expr（派生）
 export const exprFromDraftAtom = atom<Expr | null>(
