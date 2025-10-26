@@ -2,18 +2,10 @@
 import React from 'react';
 import { useAtom } from 'jotai';
 import { draftRulesAtom } from '@/features/search/atoms/draft';
-import { QueryBuilder, Field } from 'react-querybuilder';
+import { QueryBuilder } from 'react-querybuilder';
 import RuleRow from './RuleRow';
 import GroupToolbar from './GroupToolbar';
-import { FIELD_MAP } from '@/features/search/lib/helpers/field';
-
-const fields: Field[] = [
-    { name: 'class', label: 'Class', valueEditorType: 'select' },
-    { name: 'trait', label: 'Trait', valueEditorType: 'select' },
-    { name: 'attribute', label: 'Attribute', valueEditorType: 'select' },
-    { name: 'orderAlignment', label: 'Order Align', valueEditorType: 'select' },
-    { name: 'moralAlignment', label: 'Moral Align', valueEditorType: 'select' },
-];
+import { fields } from '@/features/search/lib/helpers/field';
 
 const QueryBuilderPanel: React.FC = () => {
     const [rules, setRules] = useAtom(draftRulesAtom);
@@ -29,7 +21,7 @@ const QueryBuilderPanel: React.FC = () => {
                     addGroupAction: () => null,
                     addRuleAction: () => null,
                     removeGroupAction: () => null,
-                    ruleGroup: GroupToolbar as any,
+                    ruleGroup: GroupToolbar,
                     rule: RuleRow,
                 }}
                 showNotToggle
