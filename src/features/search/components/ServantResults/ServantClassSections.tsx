@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useAtomValue } from 'jotai';
 import { useSearchServants } from '../../hooks/useSearchServants';
 import { mastersAtom } from '@/atoms/queries/master';
-import type { Class } from '@/types/master';
 import type { Servant } from '@/types/servant';
 
 function classSymbol(classId: number): string {

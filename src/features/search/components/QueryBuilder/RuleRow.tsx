@@ -1,21 +1,18 @@
 'use client'
 import React from 'react';
-import {
-    useRule,
-    type RuleProps
-} from 'react-querybuilder';
+import { useRule, type RuleProps } from 'react-querybuilder';
 import { ValuePicker } from './ValuePicker';
 import { isFieldName } from '@/features/search/lib/helpers/field';
 import { Button } from '@/components/ui/button';
 import { useAtomValue } from 'jotai';
 import { mastersAtom } from '@/atoms/queries/master';
 import { FIELD_NAMES, type FieldName } from '@/features/search/lib/helpers/field';
-import { toNumberOrNull } from '../../lib/helpers/value';
+import { toNumberOrNull } from '@/features/search/lib/helpers/value';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const RuleRow: React.FC<RuleProps> = (props) => {
     const r = useRule(props);
-    const { path, rule, schema, actions, disabled } = r;
+    const { path, rule, actions, disabled } = r;
     const masters = useAtomValue(mastersAtom);
 
     const setField = (field: string) => {
