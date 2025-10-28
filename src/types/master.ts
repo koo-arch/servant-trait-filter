@@ -1,24 +1,24 @@
 export type Class = {
-    id: string;
+    id: number;
     name: string;
 };
 
 export type Attribute = {
-    id: string;
+    id: number;
     name: string;
 };
 
 export type OrderAlignment = {
-    id: string;
+    id: number;
     name: string;
 };
 
 export type MoralAlignment = {
-    id: string;
+    id: number;
     name: string;
 };
 
 export type Trait = {
-    id: string;
+    id: number;
     name: string;
 };
