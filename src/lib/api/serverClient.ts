@@ -1,6 +1,7 @@
+import 'server-only';
 import { v4 as uuidv4 } from 'uuid';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SERVER_API_URL;
+const BASE_URL = process.env.SERVER_API_URL;
 
 export interface FetchOptions extends RequestInit {
     baseURL?: string;
